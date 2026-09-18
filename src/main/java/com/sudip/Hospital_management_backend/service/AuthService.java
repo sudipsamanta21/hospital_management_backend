@@ -37,9 +37,6 @@ public class AuthService {
     private final JwtService jwtService;
 
 
-    // =====================================================
-    // LOGIN
-    // =====================================================
 
     public LoginResponse login(LoginRequest request) {
 
@@ -72,16 +69,10 @@ public class AuthService {
     }
 
 
-    // =====================================================
-    // REGISTER
-    // =====================================================
+
 
     @Transactional
     public User register(RegisterRequest request) {
-
-        // -----------------------------
-        // Validate username
-        // -----------------------------
 
         if (request.getUsername() == null ||
                 request.getUsername().isBlank()) {
@@ -101,9 +92,6 @@ public class AuthService {
         }
 
 
-        // -----------------------------
-        // Validate email
-        // -----------------------------
 
         if (request.getEmail() == null ||
                 request.getEmail().isBlank()) {
@@ -116,9 +104,7 @@ public class AuthService {
         String email = request.getEmail().trim().toLowerCase();
 
 
-        // -----------------------------
-        // Validate password
-        // -----------------------------
+
 
         if (request.getPassword() == null ||
                 request.getPassword().length() < 6) {
@@ -129,9 +115,7 @@ public class AuthService {
         }
 
 
-        // -----------------------------
-        // Determine role
-        // -----------------------------
+
 
         Role role = Role.PATIENT;
 
@@ -155,9 +139,6 @@ public class AuthService {
         }
 
 
-        // =================================================
-        // DOCTOR REGISTRATION
-        // =================================================
 
         if (role == Role.DOCTOR) {
 
@@ -205,9 +186,6 @@ public class AuthService {
         }
 
 
-        // =================================================
-        // ADMIN REGISTRATION
-        // =================================================
 
         if (role == Role.ADMIN) {
 
@@ -253,9 +231,7 @@ public class AuthService {
         }
 
 
-        // =================================================
-        // RECEPTIONIST REGISTRATION
-        // =================================================
+
 
         if (role == Role.RECEPTIONIST) {
 
@@ -301,10 +277,6 @@ public class AuthService {
         }
 
 
-        // =================================================
-        // PATIENT REGISTRATION
-        // =================================================
-
         if (role == Role.PATIENT) {
 
             if (users.findByEmailIgnoreCase(email).isPresent()) {
@@ -346,9 +318,7 @@ public class AuthService {
     }
 
 
-    // =====================================================
-    // CREATE USER
-    // =====================================================
+
 
     private User createUser(
             String username,

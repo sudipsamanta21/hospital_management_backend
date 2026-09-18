@@ -36,7 +36,6 @@ public class Doctor {
     private User user;
 
 
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default

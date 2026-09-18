@@ -21,44 +21,33 @@ public class PrescriptionService {
     private final PatientRepository patients;
 
 
-    // =========================
-    // GET ALL PRESCRIPTIONS
-    // =========================
     public List<Prescription> getAllPrescriptions() {
         return prescriptions.findAll();
     }
 
 
-    // =========================
-    // GET PRESCRIPTIONS BY PATIENT
-    // =========================
+
     public List<Prescription> getByPatient(Long patientId) {
 
         return prescriptions.findByPatientId(patientId);
     }
 
 
-    // =========================
-    // GET PRESCRIPTIONS BY DOCTOR
-    // =========================
+
     public List<Prescription> getByDoctor(Long doctorId) {
 
         return prescriptions.findByDoctorId(doctorId);
     }
 
 
-    // =========================
-    // GET MY PRESCRIPTIONS
-    // =========================
+
     public List<Prescription> getByDoctorUsername(String username) {
 
         return prescriptions.findByDoctor_User_Username(username);
     }
 
 
-    // =========================
-    // CREATE PRESCRIPTION
-    // =========================
+
     public Prescription createPrescription(
             Long doctorId,
             Long patientId,
@@ -83,7 +72,7 @@ public class PrescriptionService {
         prescription.setDoctor(doctor);
         prescription.setPatient(patient);
 
-        // Automatically set current date/time
+
         prescription.setPrescribedAt(LocalDateTime.now());
 
 
@@ -91,9 +80,7 @@ public class PrescriptionService {
     }
 
 
-    // =========================
-    // GET PRESCRIPTION BY ID
-    // =========================
+
     public Prescription getById(Long id) {
 
         return prescriptions.findById(id)
@@ -105,9 +92,7 @@ public class PrescriptionService {
     }
 
 
-    // =========================
-    // DELETE PRESCRIPTION
-    // =========================
+
     public void deletePrescription(Long id) {
 
         if (!prescriptions.existsById(id)) {

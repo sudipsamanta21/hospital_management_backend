@@ -26,6 +26,12 @@ public class Appointment {
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id")
+    private Room room;
+
     @Column(nullable = false)
     private LocalDateTime appointmentTime;
 

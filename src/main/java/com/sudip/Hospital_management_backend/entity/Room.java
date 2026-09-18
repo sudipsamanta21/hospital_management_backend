@@ -4,24 +4,25 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "room")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Room {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String roomNumber;
 
     private String type;
-    private Double charge;
 
-    @Enumerated(EnumType.STRING)
-    private RoomStatus status = RoomStatus.AVAILABLE;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 }

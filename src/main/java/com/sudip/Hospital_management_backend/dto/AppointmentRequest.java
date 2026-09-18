@@ -14,6 +14,8 @@ public class AppointmentRequest {
 
     private Long patientId;
 
+    private String roomNumber;
+
     private LocalDateTime appointmentTime;
 
     private String reason;
